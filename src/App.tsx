@@ -1,25 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NavbarOne from './components/navbar_one/NavbarOne';
+import NavbarTwo from './components/navbar_two/NavbarTwo';
+import NavbarThree from './components/navbar_three/NavbarThree';
+import NavbarFour from './components/navbar_four/NavbarFour';
+import NavbarFive from './components/navbar_five/NavbarFive';
+import SearchPage from './components/search_page/Search';
+
+
+interface Props {
+  name?: string;
+}
+
+class Person extends React.Component<Props> {
+  constructor(props: Props) {
+    console.log("constructor method called")
+    super(props);
+    this.onclickEventHandler = this.onclickEventHandler.bind(this)
+
+  }
+
+  onclickEventHandler()  {
+    console.log(this);  // `this` refers to the undefined why
+  }
+
+  render() {
+    return (
+      <div>
+        <p onClick={this.onclickEventHandler}>{"hello"}</p>
+      </div>
+    );
+  }
+}
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <div>
+    //  {/* <NavbarOne/> */}
+    //  {/* <NavbarTwo/> */}
+    //  <NavbarThree/>
+    //  {/* <NavbarFour/> */}
+    //  {/* <NavbarFive/> */}
+    //  <SearchPage/>
+    // </div>
+    <Person/>
   );
 }
 

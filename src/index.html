@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    #filteredItems {
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .filtered-item {
+      padding: 10px;
+      background-color: #fff;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .filtered-item:hover {
+      background-color: #f5f5f5;
+    }
+
+    .filtered-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Input box -->
+  <input type="text" id="filterInput" placeholder="Type something...">
+
+  <!-- Container for filtered items -->
+  <div id="filteredItems"></div>
+
+  <script>
+    // Sample data for demonstration
+    const items = ['Apple', 'Banana', 'Orange', 'Grapes', 'Mango', 'Pineapple'];
+
+    // Get the input and filtered items container
+    const filterInput = document.getElementById('filterInput');
+    const filteredItemsContainer = document.getElementById('filteredItems');
+
+    // Add event listener for input changes
+    filterInput.addEventListener('input', function () {
+      const filterText = filterInput.value.toLowerCase();
+
+      // Clear previous filtered items
+      filteredItemsContainer.innerHTML = '';
+
+      // Filter items based on user input
+      const filteredItems = items.filter(item => item.toLowerCase().includes(filterText));
+
+      // Display filtered items
+      filteredItems.forEach(item => {
+        const filteredItemElement = document.createElement('div');
+        filteredItemElement.classList.add('filtered-item');
+        filteredItemElement.textContent = item;
+        filteredItemElement.addEventListener('click', function () {
+          // Handle item selection (you can customize this part)
+          alert(`You selected: ${item}`);
+        });
+        filteredItemsContainer.appendChild(filteredItemElement);
+      });
+    });
+  </script>
+
+</body>
+</html>
